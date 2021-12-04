@@ -100,4 +100,12 @@ public class UserAccount {
     public String getUserName() {
         return userName;
     }
+
+    /**
+     * this is a getter method
+     * @return password
+     */
+    public byte[] getPassword() {
+        return password;
+    }
 }
