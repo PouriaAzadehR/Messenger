@@ -5,16 +5,16 @@ package com.company;
  */
 public class retweetedTwit extends Twit{
 
-
+    //the person who retweets
     UserAccount retweetPerson;
+
     /**
      * this is a constructor
-     *
-     * @param sender   of twit
-     * @param contents of twit
+     * @param twit which is retweeted
+     * @param retweetPerson who retweet
      */
-    public retweetedTwit(UserAccount sender, String contents,UserAccount retweetPerson) {
-        super(sender, contents);
+    public retweetedTwit(Twit twit,UserAccount retweetPerson) {
+        super(twit.getSender(), twit.getContents());
         this.retweetPerson=retweetPerson;
     }
 }
