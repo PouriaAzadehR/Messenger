@@ -24,6 +24,7 @@ public class Twit {
     //publish time of twit
     private LocalDateTime publishTime;
 
+    private ArrayList<Twit> directReplyTwit;
 
     /**
      * this is a constructor
@@ -34,6 +35,7 @@ public class Twit {
         this.sender=sender;
         likes=new ArrayList<>();
         publishTime=LocalDateTime.now();
+        directReplyTwit=new ArrayList<>();
         while (true){
             this.contents=contents;
             if (contents.length()<256 && contents.trim().length()>0)
@@ -81,5 +83,13 @@ public class Twit {
      */
     public UserAccount getSender() {
         return sender;
+    }
+
+    /**
+     * this is a getter method
+     * @return twits which are reply in this twit
+     */
+    public ArrayList<Twit> getDirectReplyTwit() {
+        return directReplyTwit;
     }
 }
