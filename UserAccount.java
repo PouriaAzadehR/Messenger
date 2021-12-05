@@ -35,6 +35,8 @@ public class UserAccount {
     //list of following
     private ArrayList<UserAccount> following;
 
+    private ArrayList<Twit> twits;
+
     /**
      * this is a constructor
      * @param firstName of user
@@ -50,6 +52,7 @@ public class UserAccount {
         this.password=hashPassword(password);
         follower=new ArrayList<>();
         following=new ArrayList<>();
+        twits=new ArrayList<>();
         while (true){
             this.bio=bio;
             if (bio.length()<256)
@@ -132,5 +135,13 @@ public class UserAccount {
      */
     public ArrayList<UserAccount> getFollowing() {
         return following;
+    }
+
+    /**
+     * this is a getter method
+     * @return twits of user
+     */
+    public ArrayList<Twit> getTwits() {
+        return twits;
     }
 }
