@@ -41,18 +41,16 @@ public class ObserverService {
     /**
      * this is a method for returning twits of its following
      * @param me
-     * @return list of twits of its followings
+     * @return list of twits of its followings null for having no twits
      */
     public ArrayList<Twit> twitFollowing(UserAccount me){
         if (me.getFollowing().size()==0) {
-            System.out.println("you have followed no one");
             return null;
         }
         ArrayList<Twit> result=new ArrayList<>();
         for (UserAccount following:me.getFollowing())
             result.addAll(following.getTwits());
         if (result.size()==0) {
-            System.out.println("your followings have no twits");
             return null;
         }
         return result;
