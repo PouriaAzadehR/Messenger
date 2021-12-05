@@ -3,6 +3,7 @@ package com.company;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 /**
  * this is a class which is used for each user in order to have access to tweeter app
@@ -28,6 +29,12 @@ public class UserAccount {
     //hash password of user
     private byte[] password;
 
+    //list of followers
+    private ArrayList<UserAccount> follower;
+
+    //list of following
+    private ArrayList<UserAccount> following;
+
     /**
      * this is a constructor
      * @param firstName of user
@@ -41,6 +48,8 @@ public class UserAccount {
         this.lastName=lastName;
         this.userName=userName;
         this.password=hashPassword(password);
+        follower=new ArrayList<>();
+        following=new ArrayList<>();
         while (true){
             this.bio=bio;
             if (bio.length()<256)
@@ -107,5 +116,21 @@ public class UserAccount {
      */
     public byte[] getPassword() {
         return password;
+    }
+
+    /**
+     * this is a getter method
+     * @return list of followers
+     */
+    public ArrayList<UserAccount> getFollower() {
+        return follower;
+    }
+
+    /**
+     * this is a getter method
+     * @return list of followings
+     */
+    public ArrayList<UserAccount> getFollowing() {
+        return following;
     }
 }
