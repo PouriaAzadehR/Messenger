@@ -26,7 +26,7 @@ public class Client {
                 int read = in.read(buffer);
                 System.out.println("RECV: " + new String(buffer, 0, read));
             }
-            System.out.print("All messages sent.\nClosing ... ");*/
+            System.out.print("All messages sent.\nClosing ... ");
         } catch (IOException ex) {
             System.err.println(ex);
         }
