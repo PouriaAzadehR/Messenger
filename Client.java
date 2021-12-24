@@ -15,10 +15,10 @@ public class Client {
 
     public static void main(String[] args) {
         try (Socket client = new Socket("127.0.0.1", 7660)) {
-            /*System.out.println("Connected to server.");*/
+            System.out.println("Connected to server.");
             OutputStream out = client.getOutputStream();
             InputStream in = client.getInputStream();
-            /*byte[] buffer = new byte[2048];
+            byte[] buffer = new byte[2048];
             String[] messages = {"salam", "chetori?", "che-khabar?"};
             for (String msg: messages) {
                 out.write(msg.getBytes());
