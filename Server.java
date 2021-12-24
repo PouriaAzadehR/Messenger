@@ -59,6 +59,7 @@ class ClientHandler implements Runnable {
         try {
             OutputStream out = connectionSocket.getOutputStream();
             InputStream in = connectionSocket.getInputStream();
+
             byte[] buffer = new byte[2048];
             /*String[] messages = {"salam", "khubam!", "salamati!"};
             for (String msg: messages) {
@@ -68,6 +69,11 @@ class ClientHandler implements Runnable {
                 System.out.println("SENT to "+clientNum+": " + msg);
                 Thread.sleep(2000);
             }*/
+            switch (in.available()){
+                case 1:
+                case 2:
+
+            }
             System.out.print("All messages sent..\nClosing client ... ");
         } catch (IOException e) {
             e.printStackTrace();
