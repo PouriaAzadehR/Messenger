@@ -14,4 +14,8 @@ public class CommandParser {
     private String req;
     private OutputStream out;
     private InputStream in;
+
+    public CommandParser(String req){
+        this.req=req;
+    }
 }
