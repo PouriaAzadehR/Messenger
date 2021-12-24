@@ -68,7 +68,7 @@ class ClientHandler implements Runnable {
                 System.out.println("SENT to "+clientNum+": " + msg);
                 Thread.sleep(2000);
             }*/
-            System.out.print("All messages sent.\nClosing client ... ");
+            System.out.print("All messages sent..\nClosing client ... ");
         } catch (IOException e) {
             e.printStackTrace();
         } /*catch (InterruptedException e) {
