@@ -144,4 +144,11 @@ public class UserAccount {
     public ArrayList<Twit> getTwits() {
         return twits;
     }
+
+    @Override
+    public String toString() {
+        return "UserAccount{" +
+                "userName='" + userName + '\'' +
+                '}';
+    }
 }
