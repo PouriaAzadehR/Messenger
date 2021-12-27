@@ -195,6 +195,10 @@ class ClientHandler implements Runnable {
                             respond.add(Server.timelineService.retweetedTwits(findMyUserAccount(arrayListReq)));
                             break;
                         }
+                        case 13:{
+                            respond.add(Server.timelineService.replyTwits(findMyUserAccount(arrayListReq)));
+                            break;
+                        }
 
                     }
                 }
