@@ -17,4 +17,18 @@ public class retweetedTwit extends Twit{
         super(twit.getSender(), twit.getContents());
         this.retweetPerson=retweetPerson;
     }
+
+
+    @Override
+    public String toString() {
+        return "retweetedTwit{" +
+                "\nretweetPerson=" + retweetPerson +
+                "\nnum=" + num +
+                "\nsender=" + getSender() +
+                "\nlikes[" +getNumLikes() +"]"+
+                "\nretweet[" +getRetweet() +"]"+
+                "\ncontents='" + getContents() +
+                "\npublishTime=" + getPublishTime() +
+                "}\n";
+    }
 }
