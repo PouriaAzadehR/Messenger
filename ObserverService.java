@@ -43,7 +43,7 @@ public class ObserverService {
      * @param me
      * @return list of twits of its followings null for having no twits
      */
-    public ArrayList<Twit> twitFollowing(UserAccount me){
+    public String twitFollowing(UserAccount me){
         if (me.getFollowing().size()==0) {
             return null;
         }
@@ -53,6 +53,10 @@ public class ObserverService {
         if (result.size()==0) {
             return null;
         }
-        return result;
+        String stringRes="";
+        for (Twit twit:result) {
+            stringRes+=twit.toString();
+        }
+        return stringRes;
     }
 }
