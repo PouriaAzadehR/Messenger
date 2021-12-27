@@ -18,6 +18,8 @@ public class Twit implements Comparable<Twit> {
     //num of twit
     public int num=0;
 
+    private int retweet=0;
+
     //sender of twit
     private UserAccount sender;
 
@@ -93,6 +95,8 @@ public class Twit implements Comparable<Twit> {
         return sender;
     }
 
+
+
     /**
      * this is a getter method
      * @return twits which are reply in this twit
@@ -107,6 +111,33 @@ public class Twit implements Comparable<Twit> {
      */
     public int getNum() {
         return num;
+    }
+
+    /**
+     * this is a getter method
+     * @return num of retweets
+     */
+    public int getRetweet() {
+        return retweet;
+    }
+
+    /**
+     * this is a method which increment num of retweets
+     */
+    public void plus(){
+        retweet++;
+    }
+
+    @Override
+    public String toString() {
+        return "Twit{" +
+                "\nnum=" + num +
+                "\nsender=" + sender +
+                "\nlikes[" +getNumLikes() +"]"+
+                "\nretweet[" +getRetweet() +"]"+
+                "\ncontents='" + contents +
+                "\npublishTime=" + publishTime +
+                "\n}";
     }
 
     /**
