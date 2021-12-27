@@ -16,6 +16,17 @@ import java.util.concurrent.Executors;
  */
 public class Server {
 
+     static AuthenticationService authenticationService=new AuthenticationService();
+
+     static TweetingService tweetingService=new TweetingService();
+
+     static ObserverService observerService=new ObserverService();
+
+     static TimelineService timelineService=new TimelineService();
+
+
+
+
     public static void main(String[] args) {
         ExecutorService pool = Executors.newCachedThreadPool();
         try (ServerSocket welcomingSocket = new ServerSocket(7660)) {
@@ -33,6 +44,37 @@ public class Server {
         System.out.println("done.");
     }
 
+    /**
+     * this is a getter method
+     * @return authentication service
+     */
+    public AuthenticationService getAuthenticationService() {
+        return authenticationService;
+    }
+
+    /**
+     * this is a getter method
+     * @return observer service
+     */
+    public ObserverService getObserverService() {
+        return observerService;
+    }
+
+    /**
+     * this is a getter method
+     * @return timeline service
+     */
+    public TimelineService getTimelineService() {
+        return timelineService;
+    }
+
+    /**
+     * this is a getter method
+     * @return tweeting service
+     */
+    public TweetingService getTweetingService() {
+        return tweetingService;
+    }
 }
 
 /**
@@ -52,13 +94,15 @@ class ClientHandler implements Runnable {
     @Override
     public void run() {
         try {
+
             ObjectOutputStream out = new ObjectOutputStream(connectionSocket.getOutputStream());
             ObjectInputStream in =new ObjectInputStream(connectionSocket.getInputStream());
             //Thread.sleep(2000);
-            String req= (String) readFromClient(in).get(0);
-            switch (req.charAt(0)){
+            ArrayList<String> arrayListReq=readFromClient(in);
+            int reqMethod= Integer.parseInt(arrayListReq.get(0));
+            ArrayList<String> respond=new ArrayList<>();
+            switch (reqMethod){
                 case 1:{
-
                 }
                 case 2:
             }
@@ -102,6 +146,16 @@ class ClientHandler implements Runnable {
             e.printStackTrace();
         }
         return response;
+    }
+
+    /**
+     * this is a method for creating new users with clients info
+     * @param req is sent by client
+     * @return a user account
+     */
+    public UserAccount createUserAccount(ArrayList<String> req){
+        UserAccount newUser=new UserAccount(req.get(1),req.get(2),req.get(3),req.get(4),req.get(5));
+        return newUser;
     }
 
 }
