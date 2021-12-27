@@ -17,7 +17,7 @@ public class TimelineService {
      * @param me person request
      * @return list of its following twits null for having no twits
      */
-    public ArrayList<Twit> twitsFollowing(UserAccount me){
+    public String twitsFollowing(UserAccount me){
         if (me.getFollowing().size()==0) {
             return null;
         }
@@ -28,7 +28,11 @@ public class TimelineService {
             return null;
         }
         Collections.sort(result);
-        return result;
+        String stringRes="";
+        for (Twit twit:result) {
+            stringRes+=twit.toString();
+        }
+        return stringRes;
     }
 
     /**
@@ -36,14 +40,18 @@ public class TimelineService {
      * @param me
      * @return list of like of a user or return null for empy like
      */
-    public ArrayList<Like> twitLike(UserAccount me){
+    public String twitLike(UserAccount me){
         ArrayList<Like> result=new ArrayList<>();
         for (UserAccount following:me.getFollowing())
             for (Twit twit:following.getTwits())
                 result.addAll(twit.getListLikes());
         if (result.size()==0)
             return null;
-        return result;
+        String stringRes="";
+        for (Like like:result) {
+            stringRes+=like.toString();
+        }
+        return stringRes;
     }
 
     /**
@@ -51,7 +59,7 @@ public class TimelineService {
      * @param me who request
      * @return list of retweeted null if it was empty
      */
-    private ArrayList<Twit> retweetedTwits(UserAccount me){
+    public String retweetedTwits(UserAccount me){
         ArrayList<Twit> result=new ArrayList<>();
         for (UserAccount following:me.getFollowing())
             for (Twit twit:following.getTwits())
@@ -59,7 +67,11 @@ public class TimelineService {
                     result.add(twit);
         if (result.size()==0)
             return null;
-        return result;
+        String stringRes="";
+        for (Twit twit:result) {
+            stringRes+=twit.toString();
+        }
+        return stringRes;
     }
 
     /**
@@ -67,7 +79,7 @@ public class TimelineService {
      * @param me user request
      * @return replyTwits of following
      */
-    private ArrayList<Twit> replyTwits(UserAccount me){
+    private String replyTwits(UserAccount me){
         ArrayList<Twit> result=new ArrayList<>();
         for (UserAccount following:me.getFollowing())
             for (Twit twit:following.getTwits())
@@ -75,6 +87,9 @@ public class TimelineService {
         if (result.size()==0)
             return null;
         Collections.sort(result);
-        return result;
-    }
+        String stringRes="";
+        for (Twit twit:result) {
+            stringRes+=twit.toString();
+        }
+        return stringRes;    }
 }
