@@ -12,6 +12,12 @@ import java.util.ArrayList;
  */
 public class Twit implements Comparable<Twit> {
 
+    //count of twit
+    static int count=0;
+
+    //num of twit
+    public int num=0;
+
     //sender of twit
     private UserAccount sender;
 
@@ -43,6 +49,8 @@ public class Twit implements Comparable<Twit> {
             else
                 System.out.println("your twit length must at least be 256 and the least 1");
         }
+        num=count;
+        count++;
     }
 
     /**
@@ -91,6 +99,14 @@ public class Twit implements Comparable<Twit> {
      */
     public ArrayList<Twit> getDirectReplyTwit() {
         return directReplyTwit;
+    }
+
+    /**
+     * this is a method for getting number of twit
+     * @return num
+     */
+    public int getNum() {
+        return num;
     }
 
     /**
