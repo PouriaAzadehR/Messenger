@@ -37,6 +37,7 @@ public class TweetingService {
      */
     public void retweet(Twit twit,UserAccount retweeterer){
         twits.add(new retweetedTwit(twit,retweeterer));
+        twit.plus();
     }
 
     /**
