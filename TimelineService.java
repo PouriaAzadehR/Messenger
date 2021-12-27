@@ -79,7 +79,7 @@ public class TimelineService {
      * @param me user request
      * @return replyTwits of following
      */
-    private String replyTwits(UserAccount me){
+    public String replyTwits(UserAccount me){
         ArrayList<Twit> result=new ArrayList<>();
         for (UserAccount following:me.getFollowing())
             for (Twit twit:following.getTwits())
