@@ -1,10 +1,9 @@
 package com.company;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,15 +18,13 @@ public class Server {
 
     public static void main(String[] args) {
         ExecutorService pool = Executors.newCachedThreadPool();
-        int count = 0;
         try (ServerSocket welcomingSocket = new ServerSocket(7660)) {
             System.out.print("Server started.\nWaiting for a client ... ");
-            /*while (count < 3) {*/
+            for (int i = 0; i < 5; i++) {
                 Socket connectionSocket = welcomingSocket.accept();
-                count++;
                 System.out.println("client accepted!");
-                pool.execute(new ClientHandler(connectionSocket, count));
-           /* }*/
+                pool.execute(new ClientHandler(connectionSocket));
+            }
             pool.shutdown();
             System.out.print("done.\nClosing server ... ");
         } catch (IOException ex) {
@@ -47,39 +44,28 @@ public class Server {
 class ClientHandler implements Runnable {
 
     private Socket connectionSocket;
-    private int clientNum;
 
-    public ClientHandler(Socket connectionSocket, int clientNum) {
+    public ClientHandler(Socket connectionSocket) {
         this.connectionSocket = connectionSocket;
-        this.clientNum=clientNum;
     }
 
     @Override
     public void run() {
         try {
-            OutputStream out = connectionSocket.getOutputStream();
-            InputStream in = connectionSocket.getInputStream();
+            ObjectOutputStream out = new ObjectOutputStream(connectionSocket.getOutputStream());
+            ObjectInputStream in =new ObjectInputStream(connectionSocket.getInputStream());
+            //Thread.sleep(2000);
+            String req= (String) readFromClient(in).get(0);
+            switch (req.charAt(0)){
+                case 1:{
 
-            byte[] buffer = new byte[2048];
-            /*String[] messages = {"salam", "khubam!", "salamati!"};
-            for (String msg: messages) {
-                int read = in.read(buffer);
-                System.out.println("RECV from "+clientNum+": " + new String(buffer, 0, read));
-                out.write(msg.getBytes());
-                System.out.println("SENT to "+clientNum+": " + msg);
-                Thread.sleep(2000);
-            }*/
-            switch (in.available()){
-                case 1:
+                }
                 case 2:
-
             }
             System.out.print("All messages sent..\nClosing client ... ");
         } catch (IOException e) {
             e.printStackTrace();
-        } /*catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/ finally {
+        }finally {
             try {
                 connectionSocket.close();
             } catch (IOException ex) {
@@ -87,4 +73,35 @@ class ClientHandler implements Runnable {
             }
         }
     }
+
+    /**
+     * this is a method for sending respond to client
+     * @param respond of server
+     * @param out of server
+     */
+    public void SendToClient(Object respond,ObjectOutputStream out){
+        try {
+            out.writeObject(respond);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * this is a method for reading resopnse
+     * @param in inputStream of serverr
+     * @return object req
+     */
+    public ArrayList readFromClient(ObjectInputStream in){
+        ArrayList<String> response = null;
+        try {
+            response = (ArrayList) in.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
 }
