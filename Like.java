@@ -19,4 +19,11 @@ public class Like {
     public Like(UserAccount liker){
         this.liker=liker;
     }
+
+    @Override
+    public String toString() {
+        return "Like{" +
+                "liker=" + liker.toString() +
+                "}\n";
+    }
 }
