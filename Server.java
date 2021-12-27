@@ -44,37 +44,6 @@ public class Server {
         System.out.println("done.");
     }
 
-    /**
-     * this is a getter method
-     * @return authentication service
-     */
-    public AuthenticationService getAuthenticationService() {
-        return authenticationService;
-    }
-
-    /**
-     * this is a getter method
-     * @return observer service
-     */
-    public ObserverService getObserverService() {
-        return observerService;
-    }
-
-    /**
-     * this is a getter method
-     * @return timeline service
-     */
-    public TimelineService getTimelineService() {
-        return timelineService;
-    }
-
-    /**
-     * this is a getter method
-     * @return tweeting service
-     */
-    public TweetingService getTweetingService() {
-        return tweetingService;
-    }
 }
 
 /**
@@ -99,12 +68,14 @@ class ClientHandler implements Runnable {
             ObjectInputStream in =new ObjectInputStream(connectionSocket.getInputStream());
             //Thread.sleep(2000);
             while (true) {
-                ArrayList<String> respond=new ArrayList<>();
-                ArrayList<String> arrayListReq=readFromClient(in);
+                ArrayList<String> respond = new ArrayList<>();
+                ArrayList<String> arrayListReq = readFromClient(in);
+                while (arrayListReq==null)
+                    arrayListReq=readFromClient(in);
                 int reqMethod = Integer.parseInt(arrayListReq.get(0));
                 synchronized (this) {
                     switch (reqMethod) {
-                        case 0:{
+                        case 0: {
                             while (true) {
                                 if (Server.authenticationService.signIn(createUserAccount(arrayListReq))) {
                                     String respond0 = "signed in successfully\n";
@@ -130,77 +101,78 @@ class ClientHandler implements Runnable {
                         }
                         case 2: {
                             Server.tweetingService.addTwit(createTweet(arrayListReq));
-                            String respond2="twit is added successfully\n";
+                            String respond2 = "twit is added successfully\n";
                             respond.add(respond2);
                             break;
                         }
 
-                        case 3:{
+                        case 3: {
                             Server.tweetingService.removeTwit(findTwit(arrayListReq));
-                            String respond3="twit is deleted successfully\n";
+                            String respond3 = "twit is deleted successfully\n";
                             respond.add(respond3);
                             break;
                         }
 
-                        case 4:{
-                            Server.tweetingService.retweet(findTwit(arrayListReq),findMyUserAccount(arrayListReq));
-                            String respond4="retweeted successfully\n";
+                        case 4: {
+                            Server.tweetingService.retweet(findTwit(arrayListReq), findMyUserAccount(arrayListReq));
+                            String respond4 = "retweeted successfully\n";
                             respond.add(respond4);
                             break;
                         }
-                        case 5:{
-                            Server.tweetingService.like(findTwit(arrayListReq),findMyUserAccount(arrayListReq));
-                            String respond5="liked successfully\n";
+                        case 5: {
+                            Server.tweetingService.like(findTwit(arrayListReq), findMyUserAccount(arrayListReq));
+                            String respond5 = "liked successfully\n";
                             respond.add(respond5);
                             break;
                         }
 
-                        case 6:{
-                            Server.tweetingService.reply(findTwit(arrayListReq),findReplyTwit(arrayListReq));
-                            String respond6="replied successfully\n";
+                        case 6: {
+                            Server.tweetingService.reply(findTwit(arrayListReq), findReplyTwit(arrayListReq));
+                            String respond6 = "replied successfully\n";
                             respond.add(respond6);
                             break;
                         }
 
-                        case 7:{
-                            Server.observerService.follow(findMyUserAccount(arrayListReq),findOtherUserAccount(arrayListReq));
-                            String respond7="follow successfully\n";
+                        case 7: {
+                            Server.observerService.follow(findMyUserAccount(arrayListReq), findOtherUserAccount(arrayListReq));
+                            String respond7 = "follow successfully\n";
                             respond.add(respond7);
                             break;
                         }
 
-                        case 8:{
-                            Server.observerService.unfollow(findMyUserAccount(arrayListReq),findOtherUserAccount(arrayListReq));
-                            String respond8="unfollow successfully\n";
+                        case 8: {
+                            Server.observerService.unfollow(findMyUserAccount(arrayListReq), findOtherUserAccount(arrayListReq));
+                            String respond8 = "unfollow successfully\n";
                             respond.add(respond8);
                             break;
                         }
 
-                        case 9:{
+                        case 9: {
                             respond.add(Server.observerService.twitFollowing(findMyUserAccount(arrayListReq)));
                             break;
                         }
 
-                        case 10:{
+                        case 10: {
                             respond.add(Server.timelineService.twitsFollowing(findMyUserAccount(arrayListReq)));
                             break;
                         }
 
-                        case 11:{
+                        case 11: {
                             respond.add(Server.timelineService.twitLike(findMyUserAccount(arrayListReq)));
                             break;
                         }
 
-                        case 12:{
+                        case 12: {
                             respond.add(Server.timelineService.retweetedTwits(findMyUserAccount(arrayListReq)));
                             break;
                         }
-                        case 13:{
+                        case 13: {
                             respond.add(Server.timelineService.replyTwits(findMyUserAccount(arrayListReq)));
                             break;
                         }
 
                     }
+                    SendToClient(respond, out);
                 }
             }
         } catch (IOException e) {
@@ -219,7 +191,7 @@ class ClientHandler implements Runnable {
      * @param respond of server
      * @param out of server
      */
-    public void SendToClient(Object respond,ObjectOutputStream out){
+    public void SendToClient(ArrayList<String> respond,ObjectOutputStream out){
         try {
             out.writeObject(respond);
         } catch (IOException e) {
@@ -232,14 +204,11 @@ class ClientHandler implements Runnable {
      * @param in inputStream of serverr
      * @return object req
      */
-    public ArrayList readFromClient(ObjectInputStream in){
+    public ArrayList<String> readFromClient(ObjectInputStream in){
         ArrayList<String> response = null;
         try {
-            response = (ArrayList) in.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            response = (ArrayList<String>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
         }
         return response;
     }
@@ -250,8 +219,7 @@ class ClientHandler implements Runnable {
      * @return a user account
      */
     public UserAccount createUserAccount(ArrayList<String> req){
-        UserAccount newUser=new UserAccount(req.get(1),req.get(2),req.get(3),req.get(4),req.get(5));
-        return newUser;
+        return new UserAccount(req.get(1),req.get(2),req.get(3),req.get(4),req.get(5));
     }
 
     /**
@@ -287,8 +255,7 @@ class ClientHandler implements Runnable {
      * @return twit
      */
     public Twit createTweet(ArrayList<String> req){
-        Twit twit=new Twit(createUserAccount(req),req.get(6));
-        return twit;
+        return new Twit(createUserAccount(req),req.get(6));
     }
 
     /**
