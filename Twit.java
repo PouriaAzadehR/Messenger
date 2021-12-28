@@ -127,13 +127,20 @@ public class Twit implements Comparable<Twit> {
     public void plus(){
         retweet++;
     }
+    public String stringListLike(){
+        String res ="";
+        for (Like like:likes) {
+            res+=like.liker+"----";
+        }
+        return res;
+    }
 
     @Override
     public String toString() {
         return "Twit{" +
                 "\nnum=" + num +
                 "\nsender=" + sender +
-                "\nlikes[" +getNumLikes() +"]"+
+                "\nlikes[" +stringListLike() +"]"+
                 "\nretweet[" +getRetweet() +"]"+
                 "\ncontents='" + contents +
                 "\npublishTime=" + publishTime +
