@@ -100,14 +100,14 @@ class ClientHandler implements Runnable {
                             break;
                         }
                         case 2: {
-                            Server.tweetingService.addTwit(createTweet(arrayListReq));
+                            Server.tweetingService.addTwit(createTweet(arrayListReq),findMyUserAccount(arrayListReq));
                             String respond2 = "twit is added successfully\n";
                             respond.add(respond2);
                             break;
                         }
 
                         case 3: {
-                            Server.tweetingService.removeTwit(findTwit(arrayListReq));
+                            Server.tweetingService.removeTwit(findTwit(arrayListReq),findMyUserAccount(arrayListReq));
                             String respond3 = "twit is deleted successfully\n";
                             respond.add(respond3);
                             break;
@@ -127,7 +127,7 @@ class ClientHandler implements Runnable {
                         }
 
                         case 6: {
-                            Server.tweetingService.reply(findTwit(arrayListReq), findReplyTwit(arrayListReq));
+                            Server.tweetingService.reply(findTwit(arrayListReq), findReplyTwit(arrayListReq),findMyUserAccount(arrayListReq));
                             String respond6 = "replied successfully\n";
                             respond.add(respond6);
                             break;
