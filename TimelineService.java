@@ -19,13 +19,13 @@ public class TimelineService {
      */
     public String twitsFollowing(UserAccount me){
         if (me.getFollowing().size()==0) {
-            return null;
+            return "you have no following\n";
         }
         ArrayList<Twit> result=new ArrayList<>();
         for (UserAccount following:me.getFollowing())
             result.addAll(following.getTwits());
         if (result.size()==0) {
-            return null;
+            return "your following users have no twits\n";
         }
         Collections.sort(result);
         String stringRes="";
@@ -46,7 +46,7 @@ public class TimelineService {
             for (Twit twit:following.getTwits())
                 result.addAll(twit.getListLikes());
         if (result.size()==0)
-            return null;
+            return "you have no like\n";
         String stringRes="";
         for (Like like:result) {
             stringRes+=like.toString();
@@ -66,7 +66,7 @@ public class TimelineService {
                 if (twit instanceof retweetedTwit)
                     result.add(twit);
         if (result.size()==0)
-            return null;
+            return "your followings have no retweets\n";
         String stringRes="";
         for (Twit twit:result) {
             stringRes+=twit.toString();
@@ -85,7 +85,7 @@ public class TimelineService {
             for (Twit twit:following.getTwits())
                 result.addAll(twit.getDirectReplyTwit());
         if (result.size()==0)
-            return null;
+            return "your followings have no reply\n";
         Collections.sort(result);
         String stringRes="";
         for (Twit twit:result) {
