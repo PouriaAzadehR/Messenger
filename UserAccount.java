@@ -15,25 +15,25 @@ import java.util.ArrayList;
 public class UserAccount {
 
     //first name of user
-    private String firstName;
+    private final String firstName;
 
     //last name of user
-    private String lastName;
+    private final String lastName;
 
     //username of user
-    private String userName;
+    private final String userName;
 
     //some info about user
     private String bio;
 
     //hash password of user
-    private byte[] password;
+    private final byte[] password;
 
     //list of followers
-    private ArrayList<UserAccount> follower;
+    private final ArrayList<UserAccount> follower;
 
     //list of following
-    private ArrayList<UserAccount> following;
+    private final ArrayList<UserAccount> following;
 
     private ArrayList<Twit> twits;
 
