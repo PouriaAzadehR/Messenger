@@ -20,10 +20,16 @@ public class ConsoleviewService {
     /**
      * this is a method for border
      */
-    public void border(){
+    public void upperBorder(){
         System.out.println();
         System.out.println();
         System.out.println("*********************************************************************************");
+    }
+
+    public void downerBorder(){
+        System.out.println("*********************************************************************************");
+        System.out.println();
+        System.out.println();
     }
 
     public void connection(){
@@ -37,6 +43,24 @@ public class ConsoleviewService {
 
     public void signInOrSingOut(){
         System.out.println("have you already had account?\n");
+    }
+
+    public void menu(){
+        upperBorder();
+        System.out.println("MENU\n");
+        System.out.println("1-add Twit\n");
+        System.out.println("2-remove twit\n");
+        System.out.println("3-retweet a twit\n");
+        System.out.println("4-like a twit\n");
+        System.out.println("5-reply to a twit\n");
+        System.out.println("6-follow\n");
+        System.out.println("7-unfollow\n");
+        System.out.println("8-all twits of following\n");
+        System.out.println("9-all twits of following based on time\n");
+        System.out.println("10-likes\n");
+        System.out.println("11-retweet twits\n");
+        System.out.println("12-reply twits");
+        downerBorder();
     }
 
 }
