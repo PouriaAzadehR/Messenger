@@ -36,7 +36,9 @@ public class TweetingService {
      * @param retweeterer who retweets
      */
     public void retweet(Twit twit,UserAccount retweeterer){
-        twits.add(new retweetedTwit(twit,retweeterer));
+        retweetedTwit retweetedTwit=new retweetedTwit(twit,retweeterer);
+        twits.add(retweetedTwit);
+        retweeterer.getTwits().add(retweetedTwit);
         twit.plus();
     }
 
@@ -44,16 +46,21 @@ public class TweetingService {
      * this is a method for removing twits
      * @param removedTwit which should be removed
      */
-    public void removeTwit(Twit removedTwit){
+    public void removeTwit(Twit removedTwit,UserAccount sender){
         twits.remove(removedTwit);
+        sender.getTwits().add(removedTwit);
+
     }
 
     /**
      * this is a method for adding new twits
      * @param newTwit which want to be added
      */
-    public void addTwit(Twit newTwit){
+    public void addTwit(Twit newTwit,UserAccount sender){
+        //System.out.println(newTwit);
         twits.add(newTwit);
+        sender.getTwits().add(newTwit);
+        //System.out.println(twits.get(0));
     }
 
     /**
@@ -61,7 +68,7 @@ public class TweetingService {
      * @param twit main twit
      * @param replyTwit reply to main twit
      */
-    public void reply(Twit twit ,Twit replyTwit){
+    public void reply(Twit twit ,Twit replyTwit,UserAccount sender){
         twit.getDirectReplyTwit().add(replyTwit);
     }
 
