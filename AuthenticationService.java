@@ -2,7 +2,7 @@ package com.company;
 
 /**
  * this is an interface for authentication service
- * @author pouri
+ * @author pouria
  * @version 1
  * @since today
  */
