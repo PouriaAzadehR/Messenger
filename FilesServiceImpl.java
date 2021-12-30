@@ -1,5 +1,5 @@
 package com.company;
-
+import services.FileService;
 import java.io.*;
 
 /**
@@ -8,7 +8,7 @@ import java.io.*;
  * @version 1
  * @since today
  */
-public class FilesServiceImpl implements FileService{
+public class FilesServiceImpl implements FileService {
 
     /**
      * this is a method for creating file
