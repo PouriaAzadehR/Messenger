@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @version 1
  * @since today
  */
-public class TweetingService {
+public class TweetingService implements TweetingServiceIn {
 
     //list of all twits
     ArrayList<Twit> twits;
