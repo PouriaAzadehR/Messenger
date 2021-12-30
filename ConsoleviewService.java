@@ -26,25 +26,39 @@ public class ConsoleviewService {
         System.out.println("*********************************************************************************");
     }
 
+    /**
+     * this is a method for downer border
+     */
     public void downerBorder(){
         System.out.println("*********************************************************************************");
         System.out.println();
         System.out.println();
     }
 
+    /**
+     * this is a method for showing connection status
+     */
     public void connection(){
         System.out.println("Connected to server.\n");
     }
 
-
+    /**
+     * this is a method for showing done
+     */
     public void done(){
         System.out.println("done.");
     }
 
+    /**
+     * this is method which ask user whether you want to sing in or sign up
+     */
     public void signInOrSingOut(){
         System.out.println("have you already had account?\n");
     }
 
+    /**
+     * this is a method for menu
+     */
     public void menu(){
         upperBorder();
         System.out.println("MENU\n");
