@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @version 1
  * @since today
  */
-public class AuthenticationService {
+public class AuthenticationService implements AuthenticationServiceIn {
 
     //list of all users
     ArrayList<UserAccount> userAccounts;
