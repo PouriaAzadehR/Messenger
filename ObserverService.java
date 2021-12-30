@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @version 1
  * @since today
  */
-public class ObserverService {
+public class ObserverService implements ObserverServiceIn{
 
     /**
      * this is a method for following others
