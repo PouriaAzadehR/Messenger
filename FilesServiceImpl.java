@@ -8,7 +8,7 @@ import java.io.*;
  * @version 1
  * @since today
  */
-public class FilesService implements FileServiceIn{
+public class FilesServiceImpl implements FileService{
 
     /**
      * this is a method for creating file

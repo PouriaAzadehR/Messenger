@@ -17,7 +17,7 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
         Scanner scanner=new Scanner(System.in);
-        ConsoleviewService consoleviewService=new ConsoleviewService();
+        ConsoleviewServiceImpl consoleviewService=new ConsoleviewServiceImpl();
         try (Socket client = new Socket("127.0.0.1", 7660)) {
             CommandParser commandParser =new CommandParser(client.getOutputStream(),client.getInputStream());
             //signIn sign up

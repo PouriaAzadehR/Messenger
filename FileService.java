@@ -8,7 +8,7 @@ import java.io.File;
  * @version 1
  * @since today
  */
-public interface FileServiceIn {
+public interface FileService {
 
     /**
      * this is a method for creating file

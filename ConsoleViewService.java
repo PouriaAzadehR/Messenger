@@ -1,6 +1,6 @@
 package com.company;
 
-public interface ConsoleViewServiceIn {
+public interface ConsoleViewService {
 
     /**
      * this is a method for cleaning console

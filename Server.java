@@ -17,15 +17,15 @@ import java.util.concurrent.Executors;
  */
 public class Server {
 
-     static AuthenticationService authenticationService=new AuthenticationService();
+     static AuthenticationServiceImpl authenticationService=new AuthenticationServiceImpl();
 
-     static TweetingService tweetingService=new TweetingService();
+     static TweetingServiceImpl tweetingService=new TweetingServiceImpl();
 
-     static ObserverService observerService=new ObserverService();
+     static ObserverServiceImpl observerService=new ObserverServiceImpl();
 
-     static TimelineService timelineService=new TimelineService();
+     static TimelineServiceImpl timelineService=new TimelineServiceImpl();
 
-     static FilesService filesService=new FilesService();
+     static FilesServiceImpl filesService=new FilesServiceImpl();
 
      static File chat=filesService.createFile("chat.txt");
 

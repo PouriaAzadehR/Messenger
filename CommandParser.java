@@ -23,7 +23,7 @@ public class CommandParser {
     //client inputStream
     private ObjectInputStream in;
 
-    private ConsoleviewService consoleviewService;
+    private ConsoleviewServiceImpl consoleviewService;
 
     /**
      * this is a constructor
@@ -44,7 +44,7 @@ public class CommandParser {
         }
 
         charReq = new String[12];
-        consoleviewService = new ConsoleviewService();
+        consoleviewService = new ConsoleviewServiceImpl();
     }
 
     public void SendToServer(Object req) {

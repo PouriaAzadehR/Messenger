@@ -10,7 +10,7 @@ import java.util.Collections;
  * @version 1
  * @since today
  */
-public class TimelineService implements TimeLineServiceIn{
+public class TimelineServiceImpl implements TimeLineService{
 
     /**
      * this is a method for showing twit of its followings

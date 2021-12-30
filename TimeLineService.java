@@ -8,7 +8,7 @@ package com.company;
  * @version 1
  * @since today
  */
-public interface TimeLineServiceIn {
+public interface TimeLineService {
 
     /**
      * this is a method for showing twit of its followings

@@ -1,51 +1,27 @@
 package com.company;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-
 /**
- * this is a class which is used for sign in ,sign up
- * it contains list of users
+ * this is an interface for authentication service
  * @author pouri
  * @version 1
  * @since today
  */
-public class AuthenticationService implements AuthenticationServiceIn {
-
-    //list of all users
-    ArrayList<UserAccount> userAccounts;
+public interface AuthenticationService {
 
     /**
-     * this is a constructor
+     * this is a method for signing in
+     * @param userAccount who attemp
+     * @return res
      */
-    public AuthenticationService(){
-        userAccounts=new ArrayList<>();
-    }
+     boolean signIn(UserAccount userAccount);
 
     /**
-     * this is a method for sigin
-     * @param newUser for registration
-     * @return true if it sign up successfully
+     * this is a method for signing up
+     * @param newUser who attemp
+     * @return res
      */
-    public boolean signUp(UserAccount newUser){
-        for (UserAccount check:userAccounts)
-            if (check.getUserName().equals(newUser.getUserName()))
-                return false;
-        userAccounts.add(newUser);
-        return true;
-    }
-
-    /**
-     * this is a method for sign in twitter
-     * @param userAccount which want to sign in
-     * @return true if sign in true
-     */
-    public boolean signIn(UserAccount userAccount){
-        for (UserAccount check:userAccounts)
-            if (check.getUserName().equals(userAccount.getUserName()) && Arrays.equals(check.getPassword(),userAccount.getPassword()))
-                return true;
-        return false;
-    }
+     boolean signUp(UserAccount newUser);
 
 }
+
+
