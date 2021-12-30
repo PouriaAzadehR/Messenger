@@ -17,7 +17,6 @@ public class CommandParser {
     static String[] charReq;
 
 
-
     //client outputStream
     private ObjectOutputStream out;
 
@@ -28,28 +27,29 @@ public class CommandParser {
 
     /**
      * this is a constructor
+     *
      * @param out outStream of client
-     * @param in inputStream of client
+     * @param in  inputStream of client
      */
-    public CommandParser(OutputStream out,InputStream in){
+    public CommandParser(OutputStream out, InputStream in) {
         try {
-            this.in=new ObjectInputStream(in);
+            this.in = new ObjectInputStream(in);
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            this.out=new ObjectOutputStream(out);
+            this.out = new ObjectOutputStream(out);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        charReq=new String[10];
-        consoleviewService=new ConsoleviewService();
+        charReq = new String[12];
+        consoleviewService = new ConsoleviewService();
     }
 
-    public void SendToServer(Object req){
-        ArrayList<String> toServer=new ArrayList<>();
-        Collections.addAll(toServer,charReq);
+    public void SendToServer(Object req) {
+        ArrayList<String> toServer = new ArrayList<>();
+        Collections.addAll(toServer, charReq);
         try {
             out.writeObject(toServer);
         } catch (IOException e) {
@@ -57,44 +57,67 @@ public class CommandParser {
         }
     }
 
-    public String readFromServer(){
+    /**
+     * this is a method for reading form server
+     *
+     * @return response of server
+     */
+    public String readFromServer() {
         ArrayList<String> response = null;
         try {
             response = (ArrayList) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return response.get(0);
+        if (response.size()>0)
+            return response.get(0);
+        else return null;
     }
 
-    public void stop(){
-        String stop=null;
-        Scanner scanner=new Scanner(System.in);
-        while (true){
-            stop=scanner.nextLine();
-            if (stop!=null)
+    /**
+     * this is a method for reading form server
+     *
+     * @return response of server
+     */
+    public String readFromServer2() {
+        ArrayList<String> response = null;
+        try {
+            response = (ArrayList) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return response.get(1);
+    }
+
+
+    public void stop() {
+        String stop = null;
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            stop = scanner.nextLine();
+            if (stop != null)
                 break;
         }
     }
 
-    public void signUpReq(){
+    public void signUpReq() {
         System.out.println("so you are new to tweeter\nfirst of all you should sign up\n");
         System.out.println("pleas enter following info in below format just in one line(split info with space)\n");
         System.out.println("firstName lastName userName bio password\n");
-        Scanner scanner=new Scanner(System.in);
-        String console=scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        String console = scanner.nextLine();
         String[] arr = console.split(" ");
-        charReq[0]="1";
-        charReq[1]=arr[0];
-        charReq[2]=arr[1];
-        charReq[3]=arr[2];
-        charReq[4]=arr[3];
-        charReq[5]=arr[4];
+        charReq[0] = "1";
+        charReq[1] = arr[0];
+        charReq[2] = arr[1];
+        charReq[3] = arr[2];
+        charReq[4] = arr[3];
+        charReq[5] = arr[4];
         SendToServer(charReq);
         System.out.println(readFromServer());
     }
 
-    public void signInReq(){
+    public void signInReq() {
         while (true) {
             System.out.println("please enter your userName and password in below format\n");
             System.out.println("userName password\n");
@@ -110,16 +133,16 @@ public class CommandParser {
             SendToServer(charReq);
             String response = readFromServer();
             System.out.println(response);
-            if (response.charAt(0)!='u')
+            if (response.charAt(0) != 'u')
                 break;
         }
     }
 
-    public void signInSignUp(){
-        Scanner scanner=new Scanner(System.in);
+    public void signInSignUp() {
+        Scanner scanner = new Scanner(System.in);
         consoleviewService.connection();
         consoleviewService.signInOrSingOut();
-        String console=scanner.nextLine();
+        String console = scanner.nextLine();
         if (console.equals("yes"))
             signInReq();
         else
@@ -128,12 +151,12 @@ public class CommandParser {
 
     }
 
-    public void choose(){
-        Scanner scanner=new Scanner(System.in);
+    public void choose() {
+        Scanner scanner = new Scanner(System.in);
         String console;
         consoleviewService.menu();
-        console=scanner.nextLine();
-        int intInput=Integer.parseInt(console);
+        console = scanner.nextLine();
+        int intInput = Integer.parseInt(console);
         switch (intInput) {
             case 1 -> {
                 System.out.println("please enter content of your twit it must be at last 256 character\n");
@@ -223,8 +246,37 @@ public class CommandParser {
                 SendToServer(charReq);
                 System.out.println(readFromServer());
             }
-        }
-    }
 
-    // TODO: 12/27/2021 write a method for each req and fill it properly(for sign in fill with empty strings
+            case 13 -> {
+                charReq[0] = "15";
+                String server = "null";
+                SendToServer(charReq);
+                String response = readFromServer();
+                System.out.println(response);
+                int check = 0;
+                while (true) {
+                    while (check>0) {
+                            server = readFromServer();
+                            if (server != null) {
+                                System.out.println(server);
+                                break;
+                            }
+                            charReq[0]="14";
+                            SendToServer(charReq);
+                    }
+                    check++;
+                    String[] lines = response.split("\n");
+                    console = scanner.nextLine();
+                    if (console.equals("out"))
+                        break;
+                    charReq[10] = charReq[3] + "--->" + console;
+                    charReq[11] = lines[lines.length - 1];
+                    charReq[0] = "16";
+                    SendToServer(charReq);
+                }
+            }
+        }
+
+        // TODO: 12/27/2021 write a method for each req and fill it properly(for sign in fill with empty strings
+    }
 }

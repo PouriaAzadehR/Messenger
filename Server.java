@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,10 +25,20 @@ public class Server {
 
      static TimelineService timelineService=new TimelineService();
 
+     static FilesService filesService=new FilesService();
+
+     static File chat=filesService.createFile("chat.txt");
+
+     static File log=filesService.createFile("log.txt");
+
+
+
 
 
 
     public static void main(String[] args) {
+        Server.filesService.writeFile("chat.txt","CHAT ROOM");
+        Server.filesService.writeFile("log.txt","LOG FILE");
         ExecutorService pool = Executors.newCachedThreadPool();
         try (ServerSocket welcomingSocket = new ServerSocket(7660)) {
             System.out.print("Server started.\nWaiting for a client ... ");
@@ -76,98 +87,147 @@ class ClientHandler implements Runnable {
                 synchronized (this) {
                     switch (reqMethod) {
                         case 0: {
+                            LogWriter("sign in attemp\n",arrayListReq.get(3));
                             while (true) {
                                 if (Server.authenticationService.signIn(createUserAccount(arrayListReq))) {
                                     String respond0 = "signed in successfully\n";
+                                    LogWriter("signed in successfully\n","SERVER");
                                     respond.add(respond0);
                                     SendToClient(respond, out);
                                     break;
                                 } else {
                                     String respond0 = "username or password is wrong\n";
+                                    LogWriter("username or password is wrong\n","SERVER");
+
                                     respond.add(respond0);
                                     SendToClient(respond, out);
                                 }
                             }
                         }
                         case 1: {
+                            LogWriter("sign up attemp\n",arrayListReq.get(3));
                             String respond1;
                             if (Server.authenticationService.signUp(createUserAccount(arrayListReq))) {
                                 respond1 = "client is signed up\n";
                             } else {
                                 respond1 = "this username has already been taken\n";
                             }
+                            LogWriter(respond1,"SERVER");
                             respond.add(respond1);
                             break;
                         }
                         case 2: {
+                            LogWriter("adding twit\n",arrayListReq.get(3));
                             Server.tweetingService.addTwit(createTweet(arrayListReq),findMyUserAccount(arrayListReq));
                             String respond2 = "twit is added successfully\n";
+                            LogWriter(respond2,"SERVER");
                             respond.add(respond2);
                             break;
                         }
 
                         case 3: {
+                            LogWriter("removing twit\n",arrayListReq.get(3));
                             Server.tweetingService.removeTwit(findTwit(arrayListReq),findMyUserAccount(arrayListReq));
                             String respond3 = "twit is deleted successfully\n";
+                            LogWriter(respond3,"SERVER");
                             respond.add(respond3);
                             break;
                         }
 
                         case 4: {
+                            LogWriter("retweeting\n",arrayListReq.get(3));
                             Server.tweetingService.retweet(findTwit(arrayListReq), findMyUserAccount(arrayListReq));
                             String respond4 = "retweeted successfully\n";
+                            LogWriter(respond4,"SERVER");
                             respond.add(respond4);
                             break;
                         }
                         case 5: {
+                            LogWriter("liking\n",arrayListReq.get(3));
                             Server.tweetingService.like(findTwit(arrayListReq), findMyUserAccount(arrayListReq));
                             String respond5 = "liked successfully\n";
+                            LogWriter(respond5,"SERVER");
                             respond.add(respond5);
                             break;
                         }
 
                         case 6: {
+                            LogWriter("replying\n",arrayListReq.get(3));
                             Server.tweetingService.reply(findTwit(arrayListReq), findReplyTwit(arrayListReq),findMyUserAccount(arrayListReq));
                             String respond6 = "replied successfully\n";
+                            LogWriter(respond6,"SERVER");
                             respond.add(respond6);
                             break;
                         }
 
                         case 7: {
+                            LogWriter("following\n",arrayListReq.get(3));
                             Server.observerService.follow(findMyUserAccount(arrayListReq), findOtherUserAccount(arrayListReq));
                             String respond7 = "follow successfully\n";
+                            LogWriter(respond7,"SERVER");
                             respond.add(respond7);
                             break;
                         }
 
                         case 8: {
+                            LogWriter("unfollowing\n",arrayListReq.get(3));
                             Server.observerService.unfollow(findMyUserAccount(arrayListReq), findOtherUserAccount(arrayListReq));
                             String respond8 = "unfollow successfully\n";
+                            LogWriter(respond8,"SERVER");
                             respond.add(respond8);
                             break;
                         }
 
                         case 9: {
+                            LogWriter("getting twits of its following\n",arrayListReq.get(3));
                             respond.add(Server.observerService.twitFollowing(findMyUserAccount(arrayListReq)));
+                            LogWriter("returned succesfully\n","SERVER");
                             break;
                         }
 
                         case 10: {
+                            LogWriter("getting twits of its following\n",arrayListReq.get(3));
                             respond.add(Server.timelineService.twitsFollowing(findMyUserAccount(arrayListReq)));
+                            LogWriter("returned succesfully\n","SERVER");
                             break;
                         }
 
                         case 11: {
+                            LogWriter("returning likes\n",arrayListReq.get(3));
                             respond.add(Server.timelineService.twitLike(findMyUserAccount(arrayListReq)));
+                            LogWriter("returned succesfully\n","SERVER");
                             break;
                         }
 
                         case 12: {
+                            LogWriter("returning retweets\n",arrayListReq.get(3));
                             respond.add(Server.timelineService.retweetedTwits(findMyUserAccount(arrayListReq)));
+                            LogWriter("returned succesfully\n","SERVER");
+
                             break;
                         }
                         case 13: {
+                            LogWriter("returning replies\n",arrayListReq.get(3));
                             respond.add(Server.timelineService.replyTwits(findMyUserAccount(arrayListReq)));
+                            LogWriter("returned succesfully\n","SERVER");
+                            break;
+                        }
+
+                        case 14:{
+                            if (!arrayListReq.get(10).equals(Server.filesService.readLastLine("chat.txt")))
+                                respond.add(Server.filesService.readLastLine("chat.txt"));
+                            else
+                                respond.add(null);
+                            break;
+                        }
+
+                        case 15:{
+                            respond.add(Server.filesService.readFile("chat.txt"));
+                            System.out.println(Server.filesService.readFile("chat.txt"));
+                            break;
+                        }
+                        case 16:{
+                            Server.filesService.writeFile("chat.txt",arrayListReq.get(10));
                             break;
                         }
 
@@ -285,5 +345,8 @@ class ClientHandler implements Runnable {
     }
 
 
+    public void LogWriter(String content,String oparator){
+        Server.filesService.writeFile("log.txt",oparator+"--->"+content);
+    }
 
 }
