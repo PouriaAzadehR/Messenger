@@ -25,10 +25,10 @@ public class FilesService {
      * @param writedFile outputFile
      * @param content which should be written
      */
-    public void writeFile(File writedFile,String content){
+    public void writeFile(String writedFile,String content){
         try {
-            FileWriter writer = new FileWriter(writedFile.getName());
-            writer.write(content);
+            FileWriter writer = new FileWriter(writedFile,true);
+            writer.write(content+"\n");
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,14 +37,13 @@ public class FilesService {
 
     /**
      * this is a method for reading from file
-     * @param readFile which should be readed
      * @return content of file
      */
-    public String readFile(File readFile){
+    public String readFile(String readfil){
         FileReader reader = null;
         String content="";
         try {
-            reader = new FileReader(readFile.getName());
+            reader = new FileReader(readfil);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -57,7 +56,8 @@ public class FilesService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            content+=ch;
+
+            content+=(char)ch;
         }
         try {
             reader.close();
@@ -65,5 +65,15 @@ public class FilesService {
             e.printStackTrace();
         }
         return content;
+    }
+
+    /**
+     * this is a method for reading last line of file
+     * @param readFil read file
+     * @return last line
+     */
+    public String readLastLine(String readFil){
+        String[] content=readFile(readFil).split("\n");
+        return content[content.length-1];
     }
 }
