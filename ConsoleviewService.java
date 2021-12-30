@@ -59,7 +59,8 @@ public class ConsoleviewService {
         System.out.println("9-all twits of following based on time\n");
         System.out.println("10-likes\n");
         System.out.println("11-retweet twits\n");
-        System.out.println("12-reply twits");
+        System.out.println("12-reply twits\n");
+        System.out.println("13-chatroom\n");
         downerBorder();
     }
 
