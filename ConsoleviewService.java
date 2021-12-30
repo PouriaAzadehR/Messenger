@@ -6,7 +6,7 @@ package com.company;
  * @version 1
  * @since today
  */
-public class ConsoleviewService {
+public class ConsoleviewService implements ConsoleViewServiceIn {
 
     /**
      * this is a method for cleaning console

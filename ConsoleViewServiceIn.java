@@ -5,37 +5,37 @@ public interface ConsoleViewServiceIn {
     /**
      * this is a method for cleaning console
      */
-    public void clean();
+     void clean();
 
     /**
      * this is a method for border
      */
-    public void upperBorder();
+     void upperBorder();
 
     /**
      * this is a method for downer border
      */
-    public void downerBorder();
+     void downerBorder();
 
     /**
      * this is a method for showing connection status
      */
-    public void connection();
+     void connection();
 
     /**
      * this is a method for showing done
      */
-    public void done();
+     void done();
 
     /**
      * this is method which ask user whether you want to sing in or sign up
      */
-    public void signInOrSingOut();
+     void signInOrSingOut();
 
     /**
      * this is a method for menu
      */
-    public void menu();
+     void menu();
 
 
 
