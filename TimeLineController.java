@@ -14,9 +14,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class TimeLineController implements Initializable {
     @FXML
-    private TextArea show_twits;
+    private TextArea show_twits; // field for twits
 
 
 
