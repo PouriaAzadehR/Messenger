@@ -32,6 +32,7 @@ public class TimeLineController implements Initializable {
     @FXML
     void send_twit(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientApplication.class.getResource("sendTwit.fxml"));
+        int num;
         Scene scene = null;
         try {
             scene = new Scene(fxmlLoader.load(), 320, 240);
