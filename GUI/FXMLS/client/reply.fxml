@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.replyController">
+   <children>
+      <Button layoutX="258.0" layoutY="280.0" mnemonicParsing="false" onAction="#reply" text="Reply" />
+      <TextField fx:id="replyOn" layoutX="193.0" layoutY="136.0" prefHeight="9.0" prefWidth="187.0" />
+      <Text layoutX="112.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter number of twit which you want to reply on" wrappingWidth="376.6708984375" />
+      <Text layoutX="112.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="please enter number of twit will be replied" wrappingWidth="328.6708984375" />
+      <TextField fx:id="replied" layoutX="183.0" layoutY="209.0" />
+      <TextArea fx:id="response" layoutX="177.0" layoutY="325.0" prefHeight="20.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>

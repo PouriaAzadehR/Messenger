@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.deleteController">
+   <children>
+      <Button layoutX="257.0" layoutY="243.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <TextField fx:id="deleteId" layoutX="195.0" layoutY="200.0" />
+      <TextArea layoutX="167.0" layoutY="153.0" prefHeight="31.0" prefWidth="221.0" text="please enter number your twit &#10;for deleting" />
+      <TextArea fx:id="response" layoutX="178.0" layoutY="284.0" prefHeight="31.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>

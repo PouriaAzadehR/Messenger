@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.SignUpController">
+   <children>
+      <Label layoutX="227.0" layoutY="53.0" prefHeight="46.0" prefWidth="185.0" text="Sign Up" />
+      <Label layoutX="113.0" layoutY="129.0" prefHeight="21.0" prefWidth="79.0" text="First name" />
+      <Label layoutX="113.0" layoutY="156.0" text="Last name" />
+      <Label layoutX="114.0" layoutY="192.0" text="Username" />
+      <Label layoutX="113.0" layoutY="225.0" text="bio" />
+      <Label layoutX="107.0" layoutY="260.0" text="Password" />
+      <TextField fx:id="first_name" layoutX="198.0" layoutY="114.0" prefHeight="0.0" prefWidth="187.0" />
+      <TextField fx:id="last_name" layoutX="198.0" layoutY="151.0" />
+      <TextField fx:id="user_name" layoutX="199.0" layoutY="187.0" />
+      <TextField fx:id="bio" layoutX="199.0" layoutY="220.0" />
+      <TextField fx:id="password" layoutX="198.0" layoutY="255.0" />
+      <Button layoutX="255.0" layoutY="346.0" mnemonicParsing="false" onAction="#signUp" text="Sign Up" />
+      <Text fx:id="response" layoutX="239.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="104.6708984375" />
+      <Button layoutX="266.0" layoutY="315.0" mnemonicParsing="false" onAction="#back" text="Back" />
+   </children>
+</AnchorPane>

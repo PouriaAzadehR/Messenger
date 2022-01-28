@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.ClientController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Downloads/WinRAR.6.02/lettering-boom-comic-text-sound-effects_1150-39945.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="109.0" layoutY="254.0" text="User Name" textFill="#eb94de">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <Label layoutX="109.0" layoutY="281.0" prefHeight="21.0" prefWidth="95.0" text="Password" textFill="#ae18b9">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Text fx:id="sign_in_response" layoutX="165.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="228.6708984375" />
+      <TextField fx:id="user_name" layoutX="207.0" layoutY="252.0" />
+      <TextField fx:id="password" layoutX="207.0" layoutY="280.0" />
+      <Button layoutX="262.0" layoutY="316.0" mnemonicParsing="false" onAction="#sign_in" prefHeight="31.0" prefWidth="71.0" text="Sign in" />
+      <Button layoutX="261.0" layoutY="345.0" mnemonicParsing="false" onAction="#signUp_page" text="Sign up" />
+      <CheckBox layoutX="234.0" layoutY="376.0" mnemonicParsing="false" text="Remember ME" />
+      <Text layoutX="242.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN IN" wrappingWidth="116.79296875">
+         <font>
+            <Font name="System Bold Italic" size="26.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

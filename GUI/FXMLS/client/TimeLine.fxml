@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="696.0" prefWidth="644.0" stylesheets="@../../../../../../dark.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.TimeLineController">
+   <children>
+      <ScrollPane layoutX="-6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="696.0" prefWidth="652.0">
+         <content>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="694.0" prefWidth="651.0">
+               <top>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <Button mnemonicParsing="false" onAction="#refresh" onKeyPressed="#keyPressed" prefHeight="31.0" prefWidth="111.0" text="Refresh" />
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="41.0" prefWidth="213.0" text="Exit">
+                           <graphic>
+                              <Button mnemonicParsing="false" onAction="#logOut" text="Log out" />
+                           </graphic>
+                        </Button>
+                        <Button layoutX="86.0" layoutY="10.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="217.0" text="Help">
+                           <graphic>
+                              <Button mnemonicParsing="false" onAction="#about" prefHeight="31.0" prefWidth="63.0" text="About" />
+                           </graphic></Button>
+                        <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="78.0" text="Dark" />
+                    </items>
+                  </ToolBar>
+               </top>
+               <right>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#send_twit" onKeyPressed="#keyPressed" prefHeight="85.0" prefWidth="97.0" text="Twit" textFill="#262424" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#retwit" prefHeight="98.0" prefWidth="99.0" text="Retwit" />
+                        <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" onAction="#reply" prefHeight="112.0" prefWidth="99.0" text="Reply" />
+                        <Button layoutX="10.0" layoutY="66.0" mnemonicParsing="false" onAction="#delete" prefHeight="100.0" prefWidth="98.0" text="delete" />
+                        <Button layoutX="10.0" layoutY="94.0" mnemonicParsing="false" onAction="#myProfile" onKeyPressed="#keyPressed" prefHeight="117.0" prefWidth="97.0" text="My Profile" />
+                        <Button mnemonicParsing="false" onAction="#users" onKeyPressed="#keyPressed" prefHeight="126.0" prefWidth="98.0" text="Users" />
+                     </children>
+                  </VBox>
+               </right>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextArea fx:id="show_twits" layoutX="107.0" layoutY="-1.0" prefHeight="625.0" prefWidth="232.0" />
+                        <TextArea fx:id="usersField" layoutX="339.0" layoutY="-1.0" prefHeight="624.0" prefWidth="213.0" />
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </content>
+      </ScrollPane>
+      <VBox layoutY="57.0" prefHeight="639.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#like" prefHeight="68.0" prefWidth="100.0" text="Like" />
+            <Button mnemonicParsing="false" onAction="#follow" prefHeight="120.0" prefWidth="100.0" text="Follow" />
+            <Button mnemonicParsing="false" onAction="#unfollow" prefHeight="133.0" prefWidth="100.0" text="Unfollow" />
+            <Button mnemonicParsing="false" onAction="#chat" prefHeight="157.0" prefWidth="100.0" text="Chat" />
+            <Button mnemonicParsing="false" prefHeight="160.0" prefWidth="100.0" text="Reply Twits" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

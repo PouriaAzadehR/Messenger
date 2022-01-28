@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.chatController">
+   <children>
+      <TextArea fx:id="chatData" layoutX="-2.0" layoutY="69.0" prefHeight="240.0" prefWidth="600.0">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </TextArea>
+      <Text layoutX="191.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHAT ROOM">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Text>
+      <Button layoutX="274.0" layoutY="355.0" mnemonicParsing="false" onAction="#send" text="Send" />
+      <TextField fx:id="message" layoutX="207.0" layoutY="317.0" />
+      <Button layoutX="33.0" layoutY="333.0" mnemonicParsing="false" onAction="#back" text="&lt;===" />
+   </children>
+</AnchorPane>
