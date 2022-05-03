@@ -1,4 +1,11 @@
 # Twitter
-Socket programming , Multi thread , Server-Client project , Javafx
+this is twitter project for advanced programing course at AUT
 
-this is twitter project for advanced programing course with real time chating
+## features
+* Socket programming
+* Multi thread 
+* Server-Client project 
+* SOA architecture 
+* real time chat
+* Javafx
+
