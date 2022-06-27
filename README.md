@@ -25,15 +25,15 @@ Before exchanging data, computers must establish a link that is for connection-o
 
 To demonstrate sockets further, we shall use the Client/Server architecture. Client and server communicate by writing to and reading from the socket connection.
 
-## What is Socket ?
+### What is Socket ?
 
 A socket is a communication endpoint that serves as a link between two machines on a network. It has a port number, which the TCP/IP layer can use to identify the application that receives the data. An endpoint usually includes a port number and an IP address.
 
-## TCP ?
+### TCP ?
 
 Transmission Control Protocol (TCP) is a widely used protocol for data transmission on a network that supports client/server end points.
 
-## Various kind of Sockets
+### Various kind of Sockets
 
 1- A server socket - It awaits a request from a client.
 
@@ -45,7 +45,7 @@ The client has to know two things about the server:
 
 2- The port number.
 
-## How to creat a Socket Connection in Java ?
+### How to creat a Socket Connection in Java ?
 
 In Java, we create a socket connection by doing the following steps:
 
