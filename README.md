@@ -2,7 +2,7 @@
 this is a Messenger wich is going to simulate Twitter
 
 ## features
-* Socket programming
+:heavy_check_mark: Socket programming
 * Multi thread 
 * Server-Client project 
 * SOA architecture 
