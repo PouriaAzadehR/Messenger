@@ -15,7 +15,7 @@ this is a Messenger wich is going to simulate Twitter
 
 ## ERD
 
-![erd](https://user-images.githubusercontent.com/93463377/176639795-6f71daf0-5988-4bec-95b2-0b511bb4e024.PNG)
+![twitter-erd](https://user-images.githubusercontent.com/93463377/176640491-58f52f72-4208-4ee0-83e3-414c5469b6c8.PNG)
 
 
 ## Concepts and Architecture
