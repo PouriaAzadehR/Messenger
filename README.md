@@ -1,5 +1,5 @@
 # MESSENGER
-this is a Messenger wich is going to simulate Twitter
+this is a simple Messenger project with GUI
 
 ![facebook-messenger-supprimer](https://user-images.githubusercontent.com/93463377/176644866-34b8cd7f-c79e-4df7-b189-9f905f55cc66.jpg)
 
